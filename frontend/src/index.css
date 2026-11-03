@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: #212121;
+  color: #ececec;
+  font-family: Inter, Arial, sans-serif;
+}
+
+button,
+textarea {
+  font-family: inherit;
+}

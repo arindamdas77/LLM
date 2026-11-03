@@ -1,0 +1,457 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #212121;
+  color: #ececec;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 260px;
+  background: #171717;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.2s;
+}
+
+.sidebar.closed {
+  display: none;
+}
+
+.sidebar-header,
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-header h2 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 19px;
+}
+
+.sidebar-header button,
+.topbar button {
+  background: transparent;
+  color: white;
+  border: 0;
+  padding: 8px;
+}
+
+.new-chat {
+  margin-top: 25px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #454545;
+  border-radius: 10px;
+  color: white;
+  background: #252525;
+}
+
+.new-chat:hover,
+.suggestions button:hover {
+  background: #343434;
+}
+
+.history-label {
+  margin-top: 35px;
+  color: #888;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.history-list {
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  border-radius: 8px;
+}
+
+.history-item.active,
+.history-item:hover {
+  background: #292929;
+}
+
+.history-item button:first-child {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background: none;
+  border: 0;
+  color: #ddd;
+  text-align: left;
+  padding: 10px 5px;
+}
+
+.delete-btn {
+  background: transparent;
+  color: #888;
+  border: 0;
+  padding: 8px;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  border-top: 1px solid #333;
+  padding-top: 18px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.online-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  margin-left: auto;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  height: 65px;
+  padding: 0 25px;
+  border-bottom: 1px solid #333;
+  font-weight: 600;
+}
+
+.model-tag {
+  color: #aaa;
+  font-size: 12px;
+  font-weight: normal;
+  background: #303030;
+  padding: 7px 12px;
+  border-radius: 20px;
+}
+
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px 20px;
+}
+
+.welcome {
+  max-width: 700px;
+  margin: 12vh auto 0;
+  text-align: center;
+}
+
+.welcome-icon {
+  display: inline-flex;
+  padding: 18px;
+  background: #303030;
+  border-radius: 20px;
+  color: #a5b4fc;
+}
+
+.welcome h1 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.welcome > p {
+  color: #999;
+}
+
+.suggestions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 35px;
+}
+
+.suggestions button {
+  background: #292929;
+  border: 1px solid #414141;
+  border-radius: 12px;
+  padding: 16px;
+  color: #ddd;
+  text-align: left;
+}
+
+.messages {
+  max-width: 850px;
+  margin: auto;
+}
+
+.message {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #353535;
+}
+
+.assistant .avatar {
+  background: #334155;
+  color: #bfdbfe;
+}
+
+.message-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.message-content strong {
+  font-size: 14px;
+}
+
+.message-content p {
+  color: #ddd;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin-top: 8px;
+}
+
+.typing {
+  color: #999 !important;
+}
+
+.input-wrapper {
+  width: min(850px, 95%);
+  margin: 0 auto;
+  padding-bottom: 18px;
+}
+
+.input-box {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  background: #303030;
+  border: 1px solid #4b4b4b;
+  border-radius: 18px;
+  padding: 12px 14px;
+}
+
+.input-box textarea {
+  flex: 1;
+  resize: none;
+  max-height: 160px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: white;
+  font: inherit;
+  padding: 8px 0;
+}
+
+.input-box textarea::placeholder {
+  color: #999;
+}
+
+.send-btn {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: white;
+  color: #222;
+}
+
+.send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.disclaimer {
+  text-align: center;
+  font-size: 11px;
+  color: #888;
+}
+
+@media (max-width: 650px) {
+  .sidebar {
+    width: 220px;
+  }
+
+  .welcome h1 {
+    font-size: 23px;
+  }
+
+  .suggestions {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    padding: 0 12px;
+  }
+
+  .model-tag {
+    font-size: 10px;
+  }
+}
+
+
+/* =====================================
+   MARKDOWN CONTENT
+===================================== */
+
+.markdown-content {
+  color: #e5e5e5;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  color: #ffffff;
+  margin-top: 22px;
+  margin-bottom: 12px;
+}
+
+.markdown-content p {
+  margin: 10px 0;
+  white-space: normal;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 25px;
+}
+
+.markdown-content li {
+  margin: 6px 0;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid #818cf8;
+  padding-left: 15px;
+  margin-left: 0;
+  color: #aaa;
+}
+
+.markdown-content a {
+  color: #93c5fd;
+}
+
+.markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  margin: 15px 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid #444;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.markdown-content th {
+  background: #333;
+}
+
+.markdown-content tr:nth-child(even) {
+  background: #292929;
+}
+
+/* =====================================
+   CODE BLOCKS
+===================================== */
+
+.markdown-content pre {
+  background: #111827 !important;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  padding: 18px;
+  overflow-x: auto;
+  margin: 15px 0;
+  max-width: 100%;
+}
+
+.markdown-content pre code {
+  font-family: "Fira Code", Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre;
+}
+
+.markdown-content :not(pre) > code {
+  background: #383838;
+  color: #fca5a5;
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-family: Consolas, monospace;
+  font-size: 13px;
+}
+
+/* =====================================
+   STREAMING ANIMATION
+===================================== */
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.typing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #aaa !important;
+}
+
+/* =====================================
+   RESPONSIVE CODE
+===================================== */
+
+@media (max-width: 650px) {
+  .markdown-content pre {
+    padding: 12px;
+  }
+
+  .markdown-content pre code {
+    font-size: 12px;
+  }
+}
